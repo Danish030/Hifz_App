@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { useApp } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { BACKEND_BASE } from '../utils/constants';
 
 const pageScopes = [
   { key: 'bookmark', label: 'bookmark' },
@@ -363,7 +364,7 @@ const Login = () => {
       'offline_access',
       ...pageScopes.filter(scope => selectedScopes[scope.key]).map(scope => scope.key),
     ].join(' ');
-    return `/auth/login?scope=${encodeURIComponent(scopes)}`;
+    return `${BACKEND_BASE}/auth/login?scope=${encodeURIComponent(scopes)}`;
   }, [selectedScopes]);
 
   const toggleScope = useCallback((scopeKey) => {

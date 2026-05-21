@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useApp, A } from '../context/AppContext';
 import Controls from './Controls';
 import { fetchCurrentUser, fetchBookmarks, fetchCollections } from '../utils/api';
+import { BACKEND_BASE } from '../utils/constants';
 
 const Outer = styled.div`
   width: min(100%, 1080px);
@@ -119,7 +120,7 @@ export default function SettingsPage() {
   const handleLogout = async () => {
     try {
       setError(null);
-      await fetch('/auth/logout', {
+      await fetch(`${BACKEND_BASE}/auth/logout`, {
         method: 'POST',
         credentials: 'include',
       });

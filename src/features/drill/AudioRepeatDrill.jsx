@@ -1,9 +1,8 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { useApp } from '../../context/AppContext';
-import { SCRIPT_CONFIG } from '../../utils/constants';
+import { SCRIPT_CONFIG, API_BASE } from '../../utils/constants';
 import { fetchChapterAudio } from '../../utils/api';
-import { API_BASE } from '../../utils/constants';
 
 /* ── Styled ─────────────────────────────────────────────────────── */
 const Panel = styled.div`
@@ -146,7 +145,7 @@ export default function AudioRepeatDrill() {
       try {
         // segments=true gives per-word timestamps
         const res = await fetch(
-          `/api/content/audio/chapter/1/${chapter}?segments=true`
+          `${API_BASE}/audio/chapter/1/${chapter}?segments=true`
         );
         const d = await res.json();
         setAudioMeta(d.audio_file || null);
